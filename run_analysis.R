@@ -57,3 +57,6 @@ for(current_subject in subjects) {
 }
 rownames(tidy_data) <- NULL
 
+# Output resulting tidy data set
+tidy_data
+
