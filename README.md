@@ -2,6 +2,19 @@
 
 For each record it is provided averages of means and standard deviations for each measurement in the HAR dataset
 
+Recipe
+======
+Here's an overview of what the code does:
+
+1. Load features.txt into a data frame to later name columns
+2. Load HAR data files into data frames using the feature names for columns as necessary
+3. Merge activities, subjects, and data into a new data frame, for training and test data
+4. Merge training and test data into a new data frame
+5. This is an important step: From the merged data frame, I pick out the columns of data that pertain to mean or standard deviations of gathered data. These columns, along with subject and activity, are placed into merged_data. Column numbers are selected after manually reviewing colnames(merged_data) before this step
+6. Up to this point, activities were denoted by a number. Now I replace them with human-readable names
+7. Next, column names are renamed to "tidy," human-readable names
+8. Finally, the code loops over this merged dataset to generate a "tiny" dataset. This is done by looping over subjects, and then looping over activities. The merged dataset is filtered off subject and activity, averages are calculated and placed in tidy_data
+
 Variable Names
 ==============
 I'm considering variable names with mixed capitalization to be "tidy," as mentioned during lecture slide http://jtleek.com/modules/03_GettingData/01_03_componentsOfTidyData/#4. I recognize in week 4 there is mention of converting all characters to lower-case, I find this to be less readable.
