@@ -1,9 +1,6 @@
 # Tidy Dataset for UCI HAR data 
 
-Overview
-========
-For each record it is provided
-* Averages of means and standard deviations for each measurement in the HAR dataset
+For each record it is provided averages of means and standard deviations for each measurement in the HAR dataset
 
 Variable Names
 ==============
@@ -15,13 +12,14 @@ This code uses the qdap and dplyr libraries.
 
 Code Book
 =========
+
 * subject
 
-subject
+Number identifying subject that this record pertains to
 
 * activity
 
-activity
+Activity for subject that this record relates to. Will be one of SITTING, STANDING, LAYING, WALKING, WALKING\_UPSTAIRS, or WALKING\_DOWNSTAIRS
 
 * averageTimeBodyAccelerometerMeanX
 
