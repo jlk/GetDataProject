@@ -35,6 +35,13 @@ merged_data$V1[merged_data$V1==6] <- "LAYING"
 
 # Step 4 - use descriptive variable names
 merged_data <- rename(merged_data, activity = V1, subject = V1.1 )
+variable_components_to_replace <- c("^t", "^f", "Acc", "Gyro", "Mag", "BodyBody")
+variable_component_replacements <- c("time", "frequency", "Accelerometer", "Gyroscope", "Magnitude", "Body")
+colnames(merged_data) <- mgsub(variable_components_to_replace, variable_component_replacements, colnames(merged_data), fixed=FALSE)
+# Another set of replacements - note this time mgsub uses fixed=TRUE
+variable_components_to_replace <- c(".mean", ".std", ".")
+variable_component_replacements <- c("Mean", "StandardDeviation", "")
+colnames(merged_data) <- mgsub(variable_components_to_replace, variable_component_replacements, colnames(merged_data), fixed=TRUE)
 
 # Step 5 - Create tidy data set from merged data
 tidy_data = merged_data[0,]
@@ -55,8 +62,12 @@ for(current_subject in subjects) {
     tidy_data <- rbind(tidy_data, tidy_record)
   }
 }
+# Update column names to reflect mean calculations
+variable_components_to_replace <- c("time", "frequency")
+variable_component_replacements <- c("averageTime", "averageFrequency")
+colnames(tidy_data) <- mgsub(variable_components_to_replace, variable_component_replacements, colnames(tidy_data), fixed=FALSE)
+
 rownames(tidy_data) <- NULL
 
 # Output resulting tidy data set
 tidy_data
-
